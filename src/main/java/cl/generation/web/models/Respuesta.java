@@ -10,47 +10,43 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
-@Table(name="usuarios")
-public class Usuario {
+@Entity 
+@Table(name="respuestas")
+public class Respuesta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
-	private String nombreUsuario;
+	private String respuesta;
 	@NotNull
-	private String correo;
-	@NotNull
-	private String contraseña;
-	@Transient
-	private String contraseña2;
+	private String texto;
+	
+	/*@Transient
+	private int usuarioId;*/
 	
 	@Column(updatable = false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
 	
-	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
-	
-	
-	public Usuario() {
+
+	public Respuesta() {
 		super();
 	}
 
-	public Usuario(Long id, String nombreUsuario, String correo, String contraseña, String contraseña2) {
+	public Respuesta(Long id, @NotNull String respuesta, @NotNull String texto, Date createdAt, Date updatedAt) {
 		super();
 		this.id = id;
-		this.nombreUsuario = nombreUsuario;
-		this.correo = correo;
-		this.contraseña = contraseña;
-		this.contraseña2 = contraseña2;
+		this.respuesta = respuesta;
+		this.texto = texto;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 	}
 
 	public Long getId() {
@@ -61,36 +57,36 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getRespuesta() {
+		return respuesta;
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setRespuesta(String respuesta) {
+		this.respuesta = respuesta;
 	}
 
-	public String getCorreo() {
-		return correo;
+	public String getTexto() {
+		return texto;
 	}
 
-	public void setCorreo(String correo) {
-		this.correo = correo;
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
-	public String getContraseña2() {
-		return contraseña2;
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
 
-	public void setContraseña2(String contraseña2) {
-		this.contraseña2 = contraseña2;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	
 	@PrePersist
@@ -102,7 +98,14 @@ public class Usuario {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
-
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -21,13 +21,6 @@ public class UsuarioControllers {
 		return "home";
 	}
 	
-
-	
-
-	
-	
-	
-	
 	
 	
 	
